@@ -11,8 +11,7 @@ import josehomenhuck.user.repository.UserRepository;
 @Service
 public class UserService {
   
-  @Autowired
-  private UserRepository userRepository;
+  private final UserRepository userRepository;
 
   public UserService(UserRepository userRepository) {
     this.userRepository = userRepository;
