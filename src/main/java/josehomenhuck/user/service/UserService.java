@@ -1,6 +1,7 @@
 package josehomenhuck.user.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -33,12 +34,11 @@ public class UserService {
     }
 
     public void deleteUser(Long id) {
-        try {
-            userRepository.findById(id);
-        } catch (Exception e) {
-            throw new IllegalArgumentException("User not found");
-        }
-
-        userRepository.deleteById(id);
+    Optional<User> user = userRepository.findById(id);
+    if (user.isEmpty()) {
+        throw new IllegalArgumentException("User not found");
     }
+
+    userRepository.deleteById(id);
+}
 }
